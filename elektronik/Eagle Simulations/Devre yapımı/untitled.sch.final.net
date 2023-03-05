@@ -1,0 +1,57 @@
+* SpiceNetList
+* 
+* Exported from untitled.sch at 4.03.2023 21:01
+* 
+* EAGLE Version 9.6.2 Copyright (c) 1988-2020 Autodesk, Inc.
+* 
+.TEMP=25.0
+
+* --------- .OPTIONS ---------
+.OPTIONS ABSTOL=1e-12 GMIN=1e-12 PIVREL=1e-3 ITL1=100 ITL2=50 PIVTOL=1e-13 RELTOL=1e-3 VNTOL=1e-6 CHGTOL=1e-15 ITL4=10 METHOD=TRAP SRCSTEPS=0 TRTOL=7 NODE
+
+* --------- .PARAMS ---------
+
+* --------- devices ---------
+R_R2 VQ VIN 3.3K 
+C_C1 N_6 N_7 1.5N 
+R_R5 0 N_6 4.7K 
+R_R6 0 N_7 4.7K 
+Q_Q1 VQ N_2 N_6 QNPN 
+V_V1 VIN 0 6V 
+R_R3 VOUT VIN 1.5K 
+R_R4 0 N_2 10K 
+Q_Q2 VOUT VQ N_7 QNPN 
+R_R1 N_2 VIN 10K 
+
+* --------- models ---------
+
+* (model found in library)
+
+**********************
+* Autodesk EAGLE - Spice Model File
+* Date: 9/17/17
+* basic npn intrinsic model
+**********************
+.MODEL QNPN NPN
+
+
+* --------- simulation ---------
+
+
+.control
+set filetype=ascii
+TRAN 2.00011e-8 0.02002 0.02 2.00011e-8 
+write untitled.sch.sim V(VIN) V(VQ) V(VOUT) I(V_V1)
+.endc
+
+.END
+
+
+
+
+
+
+
+
+
+
