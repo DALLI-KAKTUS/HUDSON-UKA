@@ -1,0 +1,24 @@
+
+Circuit: * spicenetlist
+
+Doing analysis at TEMP = 0.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vq                                     4.45623
+vin                                          6
+n_6                                    2.18418
+n_7                                    3.65133
+n_2                                    2.97699
+vout                                   4.84622
+v_v1#branch                         -0.0015393
+
+
+No. of Data Rows : 1900
+ASCII raw file
+
+Note: No ".plot", ".print", or ".fourier" lines; no simulations run

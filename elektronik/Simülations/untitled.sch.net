@@ -1,0 +1,49 @@
+* SpiceNetList
+* 
+* Exported from untitled.sch at 4.03.2023 21:01
+* 
+* EAGLE Version 9.6.2 Copyright (c) 1988-2020 Autodesk, Inc.
+* 
+.TEMP=25.000000
+* --------- .OPTIONS ---------
+* --------- .PARAMS ---------
+
+* --------- devices ---------
+R_R2 VQ VIN 3.3K 
+C_C1 N_6 N_7 1.5N 
+R_R5 0 N_6 4.7K 
+R_R6 0 N_7 4.7K 
+Q_Q1 VQ N_2 N_6 QNPN 
+V_V1 VIN 0 6V 
+R_R3 VOUT VIN 1.5K 
+R_R4 0 N_2 10K 
+Q_Q2 VOUT VQ N_7 QNPN 
+R_R1 N_2 VIN 10K 
+
+* --------- models ---------
+
+* (model found in library)
+
+**********************
+* Autodesk EAGLE - Spice Model File
+* Date: 9/17/17
+* basic npn intrinsic model
+**********************
+.MODEL QNPN NPN
+
+
+* --------- simulation ---------
+.print DC V(VIN) V(VQ) V(VOUT) I(V_V1)
+.print AC V(VIN) V(VQ) V(VOUT) I(V_V1)
+.print TRAN V(VIN) V(VQ) V(VOUT) I(V_V1)
+.END
+
+
+
+
+
+
+
+
+
+
