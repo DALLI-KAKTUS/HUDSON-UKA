@@ -17,21 +17,43 @@
 void app_main(void)
 {
 	SSD1306_t dev; //device tanimlama
-//Islemlerde dev tanimlandi.
-	i2c_master_init(&dev, sda_gpio, scl_gpio, 19);//ssd1306'nin hangi esp pinlerine bagli oldugunu yazdik. 19 pin icin tanimlandi.
+    //Islemlerde dev tanimlandi.
+    int top = 2;
+	int bottom = 8;
+    int center = 3;
+
+    i2c_master_init(&dev, sda_gpio, scl_gpio, 19);//ssd1306'nin hangi esp pinlerine bagli oldugunu yazdik. 19 pin icin tanimlandi.
 
 	ssd1306_init(&dev, 128, 64);//Ekran boyutlari tanimlandi.
 
-	ssd1306_clear_screen(&dev, false);//Ekran temizlemek icin :(false).
+	ssd1306_clear_screen(&dev, true);
 	ssd1306_contrast(&dev, 0xff);//Siyah ve beyaz renklerin daha net gorunmesi icin contrast ayari: 0xff 
 
-  ssd1306_display_text_x3(&dev, 0, "Hello", 5, false);//(x3 yazi boyutu icn) 0 ilk satiri tanimlar, 5 ekrana yazdirilacak karakter sayisini tanimlar. (false):siyah ekran uzerine beyaz yazi yazmak icin yazildi.
-  vTaskDelay(3000 / portTICK_PERIOD_MS);//3 saniye bekleme
-  ssd1306_clear_screen(&dev, false);//Ekrana yazilan yazilarin silinmesi
+    ssd1306_display_text(&dev, center, "HELLO!", 8, false);
+    vTaskDelay(3000 / portTICK_PERIOD_MS);
+    ssd1306_clear_screen(&dev, false);
+    ssd1306_display_text(&dev, 1, " HIZ:", 5, false);
+   //Display Count
 
-  ssd1306_display_text(&dev, 1, "ssd", 3, false);//(1)hangi satirdan baslayacagi,tirnak ici yazdirilacak yazi,(3)kac harfli oldugu, (false):siyah ekran uzerine beyaz yazi yazmak icin yazildi.
-  vTaskDelay(3000 / portTICK_PERIOD_MS);//3 saniye bekleme
+	uint8_t image[24];
+	memset(image, 0, sizeof(image));
+	ssd1306_display_image(&dev, top, (6*8-1), image, sizeof(image));
+	ssd1306_display_image(&dev, top, (6*8-1), image, sizeof(image));    
+	ssd1306_display_image(&dev, top, (6*8-1), image, sizeof(image));
 
-  ssd1306_display_text(&dev, 3, "esp32", 5, true);//(3)kacinci satirda yazilmaya baslanacak, tirnak ici yazdirilacak yazi, (4)kac harf oldugu, (true):beyaz ekran uzerine siyah yazi yazmak icin yazildi.
+	for(int font=0x31; font<=0x39; font++) 
+	{
+		memset(image, 0, 5);
+		ssd1306_display_image(&dev, top-1, (7*6-1), image, 8);//6 azaltilirsa sola kayar,top degiskeni yanindaki degerler azalirsa yukari bir satir kaydi
+		memcpy(image, font8x8_basic_tr[font], 8);
+		if (dev._flip) ssd1306_flip(image, 8);
+		ssd1306_display_image(&dev, top-1, (7*6-1), image, 8);//6 azaltilirsa sola kayar,top degiskeni yanindaki degerler azalirsa yukari bir satir kaydi
+		vTaskDelay(1000 / portTICK_PERIOD_MS);
+	}
 
 }
+
+
+
+	
+
