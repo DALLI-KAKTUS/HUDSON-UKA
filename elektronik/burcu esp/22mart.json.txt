@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -70, "left": -152.67, "attrs": {} },
+    { "type": "board-ssd1306", "id": "oled1", "top": -24.05, "left": -15.23, "attrs": {} },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": 79.5,
+      "left": -14.34,
+      "rotate": 90,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "pot1:VCC", "esp:3V3", "red", [ "h-32.43", "v-38.8" ] ],
+    [ "pot1:SIG", "esp:D32", "green", [ "h-33.76", "v29.87", "h-120", "v-148" ] ],
+    [ "pot1:GND", "esp:GND.2", "black", [ "h-36.43", "v52.53", "h-120", "v-82.67" ] ],
+    [ "oled1:GND", "esp:GND.1", "black", [ "v-18.21", "h-61.04", "v114" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v-23.55", "h-75.16", "v128" ] ],
+    [ "oled1:SDA", "esp:D22", "green", [ "v0" ] ],
+    [ "oled1:SCL", "esp:D23", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "author": "Anderson Costa",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    { "type": "chip-pulse", "id": "chip1", "top": 18.79, "left": 302.42, "attrs": {} },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot1",
+      "top": 181.93,
+      "left": 287.48,
+      "attrs": { "travelLength": "50" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -59.67,
+      "left": 185.99,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -22.88,
+      "left": 126.02,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "pot1:VCC", "uno:5V", "red", [ "h0" ] ],
+    [ "uno:GND.2", "pot1:GND", "black", [ "v123.71", "h413.39", "v-90.28" ] ],
+    [ "uno:A0", "pot1:SIG", "green", [ "v0" ] ],
+    [ "uno:3", "chip1:IN", "green", [ "v-26.42", "h56.06", "v54.39" ] ],
+    [ "uno:3", "led1:A", "green", [ "v0" ] ],
+    [ "r1:2", "led1:C", "green", [ "v0" ] ],
+    [ "uno:GND.1", "r1:1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
