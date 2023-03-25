@@ -231,8 +231,8 @@ void loop() {
         }
         motor_off_counter = motor_off_counter + 1;       
       }
-      //Serial.print(PWM_IN_MIN);Serial.print("    ");Serial.println(PWM_IN_MAX);
-      //Serial.println(motor_speed);
+      Serial.print(PWM_IN_MIN);Serial.print("    ");Serial.println(PWM_IN_MAX);
+      Serial.println(motor_speed);
     }
   }//end of if MOTOR_SPINNING
 
